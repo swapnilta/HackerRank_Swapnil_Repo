@@ -13,7 +13,7 @@ process.stdin.on('data', inputStdin => {
 process.stdin.on('end', _ => {
     inputString = inputString.replace(/\s*$/, '')
         .split('\n')
-        .map(str => str.replace(/\s*$/, ''));
+        .map(str => str.replace(/\s*$/, ''));=
 
     main();
 });
