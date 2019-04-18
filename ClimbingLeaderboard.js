@@ -26,20 +26,31 @@ function readLine() {
 
 // Complete the climbingLeaderboard function below.
 function climbingLeaderboard(scores, alice) {
-    var list = [];
-    scores = [...new Set(scores)];
+    var nscores = [...new Set(scores)];
+    var rA = [];
 
-    for (var i in alice) {
-        for (var ind = 0; scores[ind] > alice[i] && ind < scores.length; ind++);
-        scores.splice(ind, 0, alice[i]);
-        list.push(ind + 1);
+    for (var i = 0, j = nscores.length - 1; i < alice.length;) {
+        if (alice[i] < nscores[j]) {
+            rA.push(j + 2);
+            i++;
+        }
+        else if (alice[i] == nscores[j]) {
+            rA.push(j + 1);
+            i++;
+        }
+        else {
+            if (j != 0) {
+                j--;
+            }
+            else {
+                rA.push(1);
+                i++;
+            }
+        }    
     }
+    return rA;
 
-    return list;
 }
-    
-
-
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
