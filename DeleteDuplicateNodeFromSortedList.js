@@ -74,20 +74,28 @@ function printSinglyLinkedList(node, sep, ws) {
  *
  */
 function removeDuplicates(head) {
-    var originalHead = head;
-    while (head) {
-        var thisData = head.data;
-        var thisNode = head;
-        console.log(head.data);
-        while (head.next && head.next.data == thisData) {
-            console.log("inner");
-            head = head.next;
-            thisNode.next = head.next;
+    var curVal = SinglyLinkedList;
+    var ret = head;
+    curVal.data = head.data;
+    curVal.next = head.next;
+    var head1 = head.next;
+    while (head1 != null) {
+        if (head1.data != curVal.data) {
+            head.next = head1;
+            curVal.data = head1.data;
+            head = head1;
         }
-        head = head.next;
+            head1 = head1.next;
     }
-    return originalHead;
+    head.next = null;
+    return ret;
 }
+    
+
+
+
+
+
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
