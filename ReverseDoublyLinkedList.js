@@ -77,18 +77,19 @@ function printDoublyLinkedList(node, sep, ws) {
  *
  */
 function reverse(head) {
-    var rHead = null;
-    while (head) {
-        var newNode = new DoublyLinkedListNode(head.data);
-        if (rHead) {
-            newNode.next = rHead;
-            rHead = newNode;
-        } else {
-            rHead = new DoublyLinkedListNode(head.data);
-        }
-        head = head.next;
+    var temp = new DoublyLinkedList;
+    var temp2;
+    temp = head.next;
+    head.prev = head.next;
+    head.next = null;
+    while (temp != null) {
+        temp2 = temp.next;
+        temp.next = head;
+        temp.prev = temp2;
+        head = temp;
+        temp = temp2;
     }
-    return rHead;
+    return head;
 
 }
 
